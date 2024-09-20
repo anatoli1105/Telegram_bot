@@ -5,15 +5,13 @@ import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.SendResponse;
-import liquibase.pro.packaged.S;
-import model.Nofitication_task;
+import model.NofiticationTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import repository.NofiticationRepository;
-import servis.Nofication_taskServis;
+
+import servis.NofiticationServis;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
@@ -26,6 +24,12 @@ import java.util.regex.Pattern;
 public class TelegramBotUpdatesListener implements UpdatesListener {
 
     private Logger logger = LoggerFactory.getLogger(TelegramBotUpdatesListener.class);
+
+    private final NofiticationServis noficationTaskServis;
+
+    public TelegramBotUpdatesListener(NofiticationServis noficationTaskServis) {
+        this.noficationTaskServis = noficationTaskServis;
+    }
 
 
     @Autowired
@@ -56,6 +60,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 Long chatID = id;
                 String dateTime = matcher.group(1);
                 String textMessage = matcher.group(3);
+                var a = new NofiticationTask(1L, dateTime, textMessage, chatID);
 
 
                 var data = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
@@ -63,7 +68,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 String str = data.format(formatter);
 
 
-                SendMessage message = new SendMessage(id, str);
+                SendMessage message = new SendMessage(id, a.getMessage());
                 SendResponse response = telegramBot.execute(message);
 
             }
