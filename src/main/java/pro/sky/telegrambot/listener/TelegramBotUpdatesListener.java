@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import repository.NofiticationRepository;
 import servis.NofiticationServis;
 
 import javax.annotation.PostConstruct;
@@ -25,21 +26,22 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 
     private Logger logger = LoggerFactory.getLogger(TelegramBotUpdatesListener.class);
 
-    private final NofiticationServis noficationTaskServis;
 
-    public TelegramBotUpdatesListener(NofiticationServis noficationTaskServis) {
-        this.noficationTaskServis = noficationTaskServis;
-    }
 
 
     @Autowired
     private TelegramBot telegramBot;
+    private NofiticationServis nofiticationServis;
+
+
 
 
     @PostConstruct
     public void init() {
-
         telegramBot.setUpdatesListener(this);
+
+
+
     }
 
 
@@ -60,7 +62,11 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 Long chatID = id;
                 String dateTime = matcher.group(1);
                 String textMessage = matcher.group(3);
-                var a = new NofiticationTask(1L, dateTime, textMessage, chatID);
+                var dateOfBot = new NofiticationTask(1L, dateTime, textMessage, chatID);
+                nofiticationServis.add(dateOfBot);
+
+
+
 
 
                 var data = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
@@ -68,7 +74,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 String str = data.format(formatter);
 
 
-                SendMessage message = new SendMessage(id, a.getMessage());
+                SendMessage message = new SendMessage(id, dateOfBot.getMessage());
                 SendResponse response = telegramBot.execute(message);
 
             }
