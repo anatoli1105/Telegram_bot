@@ -1,6 +1,5 @@
-package model;
+package pro.sky.telegrambot.model;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.Entity;
@@ -9,8 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@Configuration
-public class Nofitication_task {
+public class NofiticationTask {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
@@ -20,14 +18,14 @@ public class Nofitication_task {
     private String dateTime;
     private String message;
 
-    public Nofitication_task(Long id, String dateTime, String message, Long chatID) {
+    public NofiticationTask(Long id, String dateTime, String message, Long chatID) {
         this.id = id;
         this.dateTime = dateTime;
         this.message = message;
         this.chatID = chatID;
     }
 
-    public Nofitication_task() {
+    public NofiticationTask() {
 
     }
 
@@ -59,7 +57,6 @@ public class Nofitication_task {
     public void setChatID(Long chatID) {
         this.chatID = chatID;
     }
-
     public Long getChatID() {
         return chatID;
     }

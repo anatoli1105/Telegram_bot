@@ -1,13 +1,14 @@
-package servis;
+package pro.sky.telegrambot.servise;
 
-import model.NofiticationTask;
+import pro.sky.telegrambot.model.NofiticationTask;
 import org.springframework.stereotype.Service;
-import repository.NofiticationRepository;
+import pro.sky.telegrambot.repository.NofiticationRepository;
+
 @Service
-public class NofiticationServis {
+public class NofiticationServise {
     private final NofiticationRepository nofiticationRepository;
 
-    public NofiticationServis(NofiticationRepository nofiticationRepository) {
+    public NofiticationServise(NofiticationRepository nofiticationRepository) {
         this.nofiticationRepository = nofiticationRepository;
     }
     public NofiticationTask add(NofiticationTask nofiticationTask){

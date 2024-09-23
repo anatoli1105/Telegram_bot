@@ -5,14 +5,14 @@ import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.SendResponse;
-import model.NofiticationTask;
+import pro.sky.telegrambot.model.NofiticationTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import repository.NofiticationRepository;
-import servis.NofiticationServis;
+import pro.sky.telegrambot.repository.NofiticationRepository;
+import pro.sky.telegrambot.servise.NofiticationServise;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
@@ -31,7 +31,8 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 
     @Autowired
     private TelegramBot telegramBot;
-    private NofiticationServis nofiticationServis;
+    private NofiticationServise nofiticationServise;
+
 
 
 
@@ -63,7 +64,8 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 String dateTime = matcher.group(1);
                 String textMessage = matcher.group(3);
                 var dateOfBot = new NofiticationTask(1L, dateTime, textMessage, chatID);
-                nofiticationServis.add(dateOfBot);
+                nofiticationServise.add(dateOfBot);
+
 
 
 
