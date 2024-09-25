@@ -1,11 +1,11 @@
 -- liquibase formatted sql
 
 
--- changeset user1:1
+-- changeset im:1
 
-CREATE TABLE users1 (
+CREATE TABLE notification_task (
     id SERIAL,
-    chatId int,
+    chatId integer,
     message text,
     dataTime text
 )

@@ -31,6 +31,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 
     @Autowired
     private TelegramBot telegramBot;
+    @Autowired
     private NofiticationServise nofiticationServise;
 
 
@@ -48,8 +49,11 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 
     @Override
     public int process(List<Update> updates) {
+
         updates.forEach(update -> {
             logger.info("Processing update: {}", update);
+
+            
             var id = update.message().chat().id();
             if (update.message().text().equals("start")) {
                 //
@@ -60,10 +64,12 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             Pattern pattern = Pattern.compile("(\\d{2}\\.\\d{2}\\.\\d{4}\\s\\d{2}:\\d{2})(\\s+)(.+)");
             Matcher matcher = pattern.matcher(update.message().text());
             if (matcher.matches()) {
+
                 Long chatID = id;
                 String dateTime = matcher.group(1);
                 String textMessage = matcher.group(3);
-                var dateOfBot = new NofiticationTask(1L, dateTime, textMessage, chatID);
+                var dateOfBot = new NofiticationTask(1L, dateTime, textMessage, id);
+                logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", update);
                 nofiticationServise.add(dateOfBot);
 
 
