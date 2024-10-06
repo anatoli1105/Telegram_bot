@@ -43,7 +43,7 @@ public class NotificationServise {
 
 
     private void sendTuchat(Long chatID, String message, String dateTime) {
-        SendMessage sendMessage = new SendMessage(chatID, message);
+        SendMessage sendMessage = new SendMessage(chatID, message+dateTime);
         SendResponse response = telegramBot.execute(sendMessage);
     }
 
