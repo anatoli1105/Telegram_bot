@@ -1,32 +1,31 @@
 package pro.sky.telegrambot.model;
 
-import org.springframework.context.annotation.Configuration;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-public class NofiticationTask {
+public class NotificationTask {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long id;
 
     private Long chatID;
-    private String dateTime;
+    private LocalDateTime dateTime;
     private String message;
 
-    public NofiticationTask(Long id, String dateTime, String message, Long chatID) {
-        this.id = id;
+    public NotificationTask(Long chatID, LocalDateTime dateTime, String message) {
+        this.chatID = chatID;
         this.dateTime = dateTime;
         this.message = message;
-        this.chatID = chatID;
+
     }
 
-    public NofiticationTask() {
+    public NotificationTask() {
 
     }
 
@@ -35,7 +34,7 @@ public class NofiticationTask {
         this.id = id;
     }
 
-    public void setDateTime(String dateTime) {
+    public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 
@@ -43,7 +42,7 @@ public class NofiticationTask {
         return id;
     }
 
-    public String getDateTime() {
+    public LocalDateTime getDateTime() {
         return dateTime;
     }
 
@@ -58,6 +57,7 @@ public class NofiticationTask {
     public void setChatID(Long chatID) {
         this.chatID = chatID;
     }
+
     public Long getChatID() {
         return chatID;
     }
@@ -66,7 +66,7 @@ public class NofiticationTask {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        NofiticationTask that = (NofiticationTask) o;
+        NotificationTask that = (NotificationTask) o;
         return Objects.equals(id, that.id) && Objects.equals(chatID, that.chatID) && Objects.equals(dateTime, that.dateTime) && Objects.equals(message, that.message);
     }
 
@@ -85,3 +85,4 @@ public class NofiticationTask {
                 '}';
     }
 }
+

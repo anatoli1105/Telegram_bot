@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @OpenAPIDefinition
+@EnableScheduling
 public class TelegramBotApplication {
 
 	public static void main(String[] args) {

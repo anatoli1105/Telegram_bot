@@ -1,11 +1,8 @@
 -- liquibase formatted sql
 
 
--- changeset im:1
+-- changelog student5:1
 
-CREATE TABLE notification_task (
-    id SERIAL,
-    chatId integer,
-    message text,
-    dataTime text
-)
+
+
+
