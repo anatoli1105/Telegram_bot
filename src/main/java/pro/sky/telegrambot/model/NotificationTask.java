@@ -30,9 +30,7 @@ public class NotificationTask {
     }
 
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+
 
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;

@@ -9,8 +9,7 @@ import java.util.Collection;
 
 public interface NotificationRepository extends JpaRepository<NotificationTask, Long> {
 
-
-   @Query(value = "SELECT * FROM notification_task WHERE date_time = date_trunc('minute', CURRENT_TIMESTAMP(0))", nativeQuery = true)
+    @Query(value = "SELECT * FROM notification_task WHERE date_time = date_trunc('minute', CURRENT_TIMESTAMP(0))", nativeQuery = true)
     Collection<NotificationTask> findCurrent();
 
 }

@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pro.sky.telegrambot.servis.NotificationServis;
+import pro.sky.telegrambot.service.NotificationService;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
@@ -29,7 +29,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     @Autowired
     private TelegramBot telegramBot;
     @Autowired
-    private NotificationServis notificationServis;
+    private NotificationService notificationService;
     //  @Autowired
     // private ScheduledMethod scheduledMethod;
 
@@ -64,7 +64,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 String textMessage = matcher.group(3);
                 var date = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
                 var dateOfBot = new NotificationTask(id, date, textMessage);
-                notificationServis.add(dateOfBot);
+                notificationService.add(dateOfBot);
 
 
                 var data = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));

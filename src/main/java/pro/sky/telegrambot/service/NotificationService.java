@@ -1,4 +1,4 @@
-package pro.sky.telegrambot.servis;
+package pro.sky.telegrambot.service;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.request.SendMessage;
@@ -12,11 +12,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 
 @Service
-public class NotificationServis {
+public class NotificationService {
     private final NotificationRepository notificationRepository;
     private final TelegramBot telegramBot;
 
-    public NotificationServis(NotificationRepository notificationRepository, TelegramBot telegramBot) {
+    public NotificationService(NotificationRepository notificationRepository, TelegramBot telegramBot) {
         this.notificationRepository = notificationRepository;
         this.telegramBot = telegramBot;
     }
