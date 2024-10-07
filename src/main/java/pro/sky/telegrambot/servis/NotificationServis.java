@@ -1,4 +1,4 @@
-package pro.sky.telegrambot.servise;
+package pro.sky.telegrambot.servis;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.request.SendMessage;
@@ -8,16 +8,15 @@ import org.springframework.stereotype.Service;
 import pro.sky.telegrambot.repository.NotificationRepository;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 
 @Service
-public class NotificationServise {
+public class NotificationServis {
     private final NotificationRepository notificationRepository;
     private final TelegramBot telegramBot;
 
-    public NotificationServise(NotificationRepository notificationRepository, TelegramBot telegramBot) {
+    public NotificationServis(NotificationRepository notificationRepository, TelegramBot telegramBot) {
         this.notificationRepository = notificationRepository;
         this.telegramBot = telegramBot;
     }
@@ -32,7 +31,7 @@ public class NotificationServise {
     }
 
 
-    public void SendNotification() {
+    public void sendNotification() {
         Collection<NotificationTask> tasks = notificationRepository.findCurrent();
         for (NotificationTask task : tasks) {
 

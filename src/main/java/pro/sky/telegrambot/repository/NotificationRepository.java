@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.Query;
 import pro.sky.telegrambot.model.NotificationTask;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.time.LocalDateTime;
 import java.util.Collection;
 
 
